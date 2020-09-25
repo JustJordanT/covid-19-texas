@@ -1,1 +1,1 @@
-# covid-texas
+# covid-19-texas
