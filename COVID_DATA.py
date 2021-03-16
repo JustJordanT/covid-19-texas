@@ -24,19 +24,19 @@ data_tx = data_daily.filter(['datetime', 'state', 'positive', 'hospitalizedCurre
 
 #Racial dataset for cases
 #Load Data
-data_racial = pd.read_csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vR_xmYt4ACPDZCDJcY12kCiMiH0ODyx3E1ZvgOHB8ae1tRcjXbs_yWBOA4j4uoCEADVfC1PS2jYO68B/pub?gid=43720681&single=true&output=csv')
-data_racialTX = data_racial.loc[data_racial['State'] == 'TX' ]
-data_racialTX['Datetime'] = data_racialTX['Date'].apply(lambda x: pd.to_datetime(str(x), format='%Y%m%d'))
-data_racialTX = data_racialTX.filter(['Datetime','Cases_White' , 'Cases_Black', 'Cases_LatinX', 'Cases_Asian'])
+#data_racial = pd.read_csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vR_xmYt4ACPDZCDJcY12kCiMiH0ODyx3E1ZvgOHB8ae1tRcjXbs_yWBOA4j4uoCEADVfC1PS2jYO68B/pub?gid=43720681&single=true&output=csv')
+#data_racialTX = data_racial.loc[data_racial['State'] == 'TX' ]
+#data_racialTX['Datetime'] = data_racialTX['Date'].apply(lambda x: pd.to_datetime(str(x), format='%Y%m%d'))
+#data_racialTX = data_racialTX.filter(['Datetime','Cases_White' , 'Cases_Black', 'Cases_LatinX', 'Cases_Asian'])
 #Deaths
-data_racialTX_deaths = data_racialTX.filter(['Deaths_White','Deaths_Black','Deaths_LatinX','Deaths_Asian'])
+#data_racialTX_deaths = data_racialTX.filter(['Deaths_White','Deaths_Black','Deaths_LatinX','Deaths_Asian'])
 
 #Cache
 
 
 st.title("Covid-19 Dashboard For Texas")
 st.markdown('The dashboard will visualize the 🔬 Covid-19 data in 🐮 Texas')
-'![pic](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.utsouthwestern.edu%2Fasset%2F5df2ef0d-13ac-4f1a-8b54-4d33ba23dc44%2Fcovid19-812x220.jpg&f=1&nofb=1)'
+'![pic](https://www.dshs.texas.gov/uploadedImages/Content/Prevention_and_Preparedness/immunize/images/covid19-banner.jpg)'
 
 
 st.markdown('Coronavirus disease (COVID-19) is an infectious disease caused by a newly discovered coronavirus. Most people infected with the COVID-19 virus will experience mild to moderate respiratory illness and recover without requiring special treatment.')
@@ -52,10 +52,10 @@ st.markdown('Coronavirus disease (COVID-19) is an infectious disease caused by a
 #Sidebar
 st.sidebar.title("Data-Set Selector")
 st.sidebar.markdown("Select the Charts/Plots accordingly:")
-if st.sidebar.checkbox('Show Me The Data - "CSV Data-Set"'):
+if st.sidebar.checkbox('Charts: Show Me The Data - "CSV Data-Set"'):
         '### Data for from an hisstorical basis'
         st.dataframe(data_tx, width=3000, height= 700)
-if st.sidebar.checkbox('Positive to Recovered Cases Texas'):
+if st.sidebar.checkbox('Plot: Positive to Recovered Cases Texas'):
     '### Positive to Recovered Cases Texas'
     'As we look at our scatter plot we are able to see that as we see the amount of cases rise, we are also see a rise in recovered cases as well'
     
@@ -64,8 +64,8 @@ if st.sidebar.checkbox('Positive to Recovered Cases Texas'):
     ax = ax.set_xticklabels(rotation=30)
     ax =ax.set_ylabels('Positive Cases in hundred thousands')
     st.pyplot(ax)
-if st.sidebar.checkbox("'Deaths' To 'Hospitalized Currently' Cases In Texas"):
-    "### 'Deaths' To 'Hospitalized Currently' Cases In Texas"
+if st.sidebar.checkbox("Plot: 'Deaths' To 'Hospitalized Currently' Cases In Texas"):
+    "### Plot: 'Deaths' To 'Hospitalized Currently' Cases In Texas"
     'When we take a look at the "deaths" we are spike in "deaths" almost 1 month after the initial spike of "positive" cases.'
     ax1 = sns.relplot(x='datetime', y='death', hue='hospitalizedCurrently',data=data_tx)
     ax1 = ax1.set_xticklabels(rotation=30)
