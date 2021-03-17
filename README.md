@@ -3,4 +3,4 @@
 This is a simple project showing the use of the python module called `Streamlit`.
 We will be using the data-set from the following sources.
 
-[Project-Link](texas-covid019.herokuapp.com)
+[Project-Link](https://texas-covid019.herokuapp.com)
